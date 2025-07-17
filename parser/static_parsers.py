@@ -21,6 +21,7 @@ class StaticParser:
 				 topic_url_field: str = None,
 				 topic_prefix: str = None,
 				 topic_suffix: str = None,
+				 topic_slice: str = None,
 				 comment_classes: List[str] = None,
 				 comment_container: str = None,
 				 comment_prefix: str = None,
@@ -39,6 +40,7 @@ class StaticParser:
 
 		self.topic_prefix = topic_prefix
 		self.topic_suffix = topic_suffix
+		self.topic_slice = topic_slice
 
 		if not self.topic_classes: self.logger.warning("WARNING: not specified HTML/CSS classes for topic containers! Specify them when you wil parse topics!")
 		if not self.topic_container: self.logger.warning("WARNING: not specified HTML container with topics! Specify it when you wil parse topics!")
@@ -65,6 +67,8 @@ class StaticParser:
 
 	def parse_topics(self,
 					 root_url: str,
+					 deep = 1,
+
 					 topic_classes: List[str]  | None = None,
 				 	 topic_container: str | None = None,
 				 	 topic_url_field: str | None = None
@@ -83,23 +87,29 @@ class StaticParser:
 		assert self.topic_container
 		assert self.topic_url_field
 
-		soup = self.parse_url(root_url)
+		if self.topic_suffix: root_url += self.topic_suffix
 
-		posts = soup.find_all(self.topic_container, class_=self.topic_classes)
+		for d in range(1, deep + 1):
 
-		for post in posts:
+			if self.topic_slice:
+				root_url = root_url[:root_url.rfind(self.topic_slice)] + self.topic_suffix + str(d)
 
-			content = post.find("a")
-			title = content.text.strip()
-			url = content[self.topic_url_field]
+			soup = self.parse_url(root_url)
 
-			if self.topic_prefix: url = self.topic_prefix + url
-			if self.topic_suffix: url += self.topic_suffix
+			posts = soup.find_all(self.topic_container, class_=self.topic_classes)
 
-			if title in self.parsed_topics:
-				continue
+			for post in posts:
 
-			self.parsed_topics[title] = url
+				content = post.find("a")
+				title = content.text.strip()
+				url = content[self.topic_url_field]
+
+				if self.topic_prefix: url = self.topic_prefix + url
+
+				if title in self.parsed_topics:
+					continue
+
+				self.parsed_topics[title] = url
 
 		return self.parsed_topics
 
@@ -124,7 +134,8 @@ class StaticParser:
 
 		for d in range(1, deep + 1):
 
-			topic_url = topic_url[:topic_url.rfind(self.comment_slice)] + self.comment_suffix + str(d)
+			if self.comment_slice:
+				topic_url = topic_url[:topic_url.rfind(self.comment_slice)] + self.comment_suffix + str(d)
 
 			soup = self.parse_url(topic_url)
 			soup.features = "lxml"
@@ -152,7 +163,11 @@ def build_kupus_parser():
 	kupus_parser = StaticParser(
 		topic_classes = ["ipsType_break ipsContained"],
 		topic_container = "span", 
-		topic_url_field = "data-ipshover-target"
+		topic_url_field = "data-ipshover-target",
+		comment_classes = ["ipsType_normal", "ipsType_richText", "ipsPadding_bottom", "ipsContained"],
+		comment_container = "div",
+		comment_suffix = "page/",
+		comment_slice = "?preview"
 	)
 
 	return kupus_parser
@@ -169,6 +184,40 @@ def build_hranidengi_parser():
 		comment_suffix = "page-",
 		comment_slice = "page"
 	)
+
+	return hranidengi_parser
+
+def build_findozor_parser():
+
+	findozor_parser = StaticParser(
+		topic_classes = ["structItem-title"],
+		topic_container = "div", 
+		topic_url_field = "href",
+		topic_prefix = "https://findozor.net",
+		topic_suffix = 'page-',
+		topic_slice = "page",
+		comment_classes = ["bbWrapper", "message-userContent", "lbContainer", "js-lbContainer"],
+		comment_container = "div",
+		comment_suffix = "page-",
+		comment_slice = "page"
+	)
+
+	return findozor_parser
+
+def build_finforum_parser():
+
+	finforum_parser = StaticParser(
+		topic_classes = ["structItem-title"],
+		topic_container = "div", 
+		topic_url_field = "href",
+		topic_prefix = "https://finforums.ru",
+		comment_classes = ["bbWrapper", "message-userContent", "lbContainer", "js-lbContainer"],
+		comment_container = "div",
+		comment_suffix = "page-",
+		comment_slice = "page"
+	)
+
+	return finforum_parser
 
 # -------------------------------------------------------------------------------------------------------
 
