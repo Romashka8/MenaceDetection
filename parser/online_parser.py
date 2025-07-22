@@ -59,8 +59,29 @@ class OnlineParser:
 		return parsed_headers
 
 	def parse_comments(self, url, deep=1):
+		
+		parsed_comments = []
 
-		pass
+		for d in tqdm.tqdm(range(1, deep + 1)):
+
+			if self.config["comment_slice"]:
+				url = url[:url.rfind(self.config["comment_slice"])] + self.config["comment_suffix"] + str(d)
+
+			soup = self.parse_html(url)
+			soup.features = "lxml"
+			comments = soup.find_all(self.config["comment_container"], class_=self.config["comment_classes"])
+
+			for com in comments:
+
+				try:
+					parsed = re.sub(r"\s+", " ", com.find("p").text)
+					parsed_date = com.find("time")["datetime"]
+					parsed_comments.append((parsed, parsed_date))
+				
+				except AttributeError:
+					continue
+
+		return parsed_comments
 
 	def run_online(self, timeout):
 
