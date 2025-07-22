@@ -41,6 +41,8 @@ class OnlineParser:
 			soup = self.parse_html(url)
 
 			posts = soup.find_all(self.config["header_container"], class_=self.config["header_classes"])
+			dates = soup.find_all("time")
+			date_slicer = 1
 
 			for post in posts:
 
@@ -51,7 +53,8 @@ class OnlineParser:
 				if self.config["header_prefix"]:
 					link = self.config["header_prefix"] + link
 
-				parsed_headers[title] = link
+				parsed_headers[title] = (link, dates[date_slicer - 1]["datetime"], dates[date_slicer]["datetime"])
+				date_slicer += 2
 
 		return parsed_headers
 
