@@ -28,9 +28,38 @@ class OnlineParser:
 
 	def parse_headers(self, url, deep=1):
 
-		pass
+		parsed_headers = {}
+
+		if self.config["header_suffix"]:
+			url += self.config["header_suffix"]
+
+		for d in tqdm.tqdm(range(1, deep + 1)):
+
+			if self.config["header_slice"]:
+				url = url[:url.rfind(self.config["header_slice"])] + self.config["header_suffix"] + str(d)
+
+			soup = self.parse_html(url)
+
+			posts = soup.find_all(self.config["header_container"], class_=self.config["header_classes"])
+
+			for post in posts:
+
+				content = post.find("a")
+				title = content.text.strip()
+				link = content[self.config["header_link_field"]]
+
+				if self.config["header_prefix"]:
+					link = self.config["header_prefix"] + link
+
+				parsed_headers[title] = link
+
+		return parsed_headers
 
 	def parse_comments(self, url, deep=1):
+
+		pass
+
+	def run_online(self, timeout):
 
 		pass
 
