@@ -1,1 +1,2 @@
 import parser.static_parsers
+import parser.online_parser
