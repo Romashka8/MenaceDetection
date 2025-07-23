@@ -1,0 +1,36 @@
+{
+    "header_links": [
+        "https://kupus.ru/forum/18-kreditnye-karty/",
+        "https://kupus.ru/forum/19-debetovye-karty/",
+        "https://kupus.ru/forum/22-mikrozajmy/",
+        "https://kupus.ru/forum/17-kredity/",
+        "https://kupus.ru/forum/22-mikrozajmy/",
+        "https://kupus.ru/forum/102-sekrety-i-lajfhaki/",
+        "https://kupus.ru/forum/57-moshennicheskie-tranzakcii/"
+    ],
+    "header_map": {
+        "https://kupus.ru/forum/18-kreditnye-karty/": "Кредитные карты",
+        "https://kupus.ru/forum/19-debetovye-karty/": "Дебетовые карты",
+        "https://kupus.ru/forum/22-mikrozajmy/": "Микрозаймы",
+        "https://kupus.ru/forum/17-kredity/": "Кредиты",
+        "https://kupus.ru/forum/22-mikrozajmy/": "Микрозаймы",
+        "https://kupus.ru/forum/102-sekrety-i-lajfhaki/": "Секреты и Лайфхаки",
+        "https://kupus.ru/forum/57-moshennicheskie-tranzakcii/": "Мошеннические транзакции"
+    },
+    "header_classes": [
+        "ipsType_break ipsContained"
+    ],
+    "header_container": "span",
+    "header_link_field": "data-ipshover-target",
+    "header_prefix": "",
+    "header_suffix": "page/",
+    "header_slice": "page/",
+    "comment_classes": [
+        "ipsComment_content",
+        "ipsType_medium"
+    ],
+    "comment_container": "div",
+    "comment_prefix": "",
+    "comment_suffix": "page/",
+    "comment_slice": "?preview"
+}
