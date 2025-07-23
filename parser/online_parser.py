@@ -33,7 +33,7 @@ class OnlineParser:
 		if self.config["header_suffix"]:
 			url += self.config["header_suffix"]
 
-		for d in tqdm.tqdm(range(1, deep + 1)):
+		for d in range(1, deep + 1):
 
 			if self.config["header_slice"]:
 				url = url[:url.rfind(self.config["header_slice"])] + self.config["header_suffix"] + str(d)
@@ -62,7 +62,7 @@ class OnlineParser:
 		
 		parsed_comments = []
 
-		for d in tqdm.tqdm(range(1, deep + 1)):
+		for d in range(1, deep + 1):
 
 			if self.config["comment_slice"]:
 				url = url[:url.rfind(self.config["comment_slice"])] + self.config["comment_suffix"] + str(d)
@@ -76,16 +76,14 @@ class OnlineParser:
 				try:
 					parsed = re.sub(r"\s+", " ", com.find("p").text)
 					parsed_date = com.find("time")["datetime"]
-					parsed_comments.append((parsed, parsed_date))
+					if (parsed, parsed_date) not in parsed_comments:
+						parsed_comments.append((parsed, parsed_date))
 				
 				except AttributeError:
+					print("AttributeError!")
 					continue
 
 		return parsed_comments
-
-	def run_online(self, timeout):
-
-		pass
 
 # -------------------------------------------------------------------------------------------------------
 
