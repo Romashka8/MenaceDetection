@@ -96,7 +96,8 @@ class OnlineParser:
 					""")
 
 				finally:
-					parsed_comments.append((parsed, "dd:mm:yy"))
+					if (parsed, "dd:mm:yy") not in parsed_comments:
+						parsed_comments.append((parsed, "dd:mm:yy"))
 
 		return parsed_comments
 
