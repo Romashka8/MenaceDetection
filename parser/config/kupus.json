@@ -32,5 +32,9 @@
     "comment_container": "div",
     "comment_prefix": "",
     "comment_suffix": "page/",
-    "comment_slice": "?preview"
+    "comment_slice": "?preview",
+    "comment_text_container": "p",
+    "comment_date_container": "time",
+    "comment_date_atr": "datetime",
+    "skip_first": 0
 }
