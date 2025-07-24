@@ -18,6 +18,7 @@ class OnlineParser:
 	def __init__(self, config):
 		
 		self.config = config
+		self.logger = logging.getLogger(__name__)
 
 	def parse_html(self, url):
 
@@ -71,17 +72,31 @@ class OnlineParser:
 			soup.features = "lxml"
 			comments = soup.find_all(self.config["comment_container"], class_=self.config["comment_classes"])
 
-			for com in comments:
+			for com in comments[self.config["skip_first"]:]:
 
 				try:
-					parsed = re.sub(r"\s+", " ", com.find("p").text)
-					parsed_date = com.find("time")["datetime"]
+					if self.config["comment_text_container"] and self.config["comment_date_container"]:
+						parsed = re.sub(r"\s+", " ", com.find(self.config["comment_text_container"]).text)
+						parsed_date = com.find(self.config["comment_date_container"])[self.config["comment_date_atr"]]
+					else:
+						parsed = re.sub(r"\s+", " ", com.text)
+						parsed_date = com[self.config["comment_date_atr"]]
+
 					if (parsed, parsed_date) not in parsed_comments:
 						parsed_comments.append((parsed, parsed_date))
 				
+				except KeyError:
+					self.logger.warning(f"""
+						KeyError trying to parse {str(com)[:10]} in {url}...
+					""")
+
 				except AttributeError:
-					print("AttributeError!")
-					continue
+					self.logger.warning(f"""
+						AttributeError trying to parse {str(com)[:10]} in {url}...
+					""")
+
+				finally:
+					parsed_comments.append((parsed, "dd:mm:yy"))
 
 		return parsed_comments
 
