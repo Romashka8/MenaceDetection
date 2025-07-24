@@ -35,5 +35,9 @@
     "comment_container": "div",
     "comment_prefix": "",
     "comment_suffix": "/page-",
-    "comment_slice": "page"
+    "comment_slice": "/page",
+    "comment_text_container": "",
+    "comment_date_container": "",
+    "comment_date_atr": "data-lb-caption-desc",
+    "skip_first": 1
 }
