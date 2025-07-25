@@ -1,13 +1,13 @@
 {
     "header_links": [
-        "https://hranidengi.com/forums/konfliktnye-situacii/",
-        "https://hranidengi.com/forums/kreditnye-karty/",
-        "https://hranidengi.com/forums/debetovye-karty/",
-        "https://hranidengi.com/forums/kredity/",
-        "https://hranidengi.com/forums/kreditnaja-istorija/",
-        "https://hranidengi.com/forums/juridicheskaja-konsultacija/",
-        "https://hranidengi.com/forums/moshennicheskie-tranzakcii/",
-        "https://hranidengi.com/forums/sekrety-i-lajfxaki.34/"
+        "https://hranidengi.com/forums/konfliktnye-situacii",
+        "https://hranidengi.com/forums/kreditnye-karty",
+        "https://hranidengi.com/forums/debetovye-karty",
+        "https://hranidengi.com/forums/kredity",
+        "https://hranidengi.com/forums/kreditnaja-istorija",
+        "https://hranidengi.com/forums/juridicheskaja-konsultacija",
+        "https://hranidengi.com/forums/moshennicheskie-tranzakcii",
+        "https://hranidengi.com/forums/sekrety-i-lajfxaki.34"
     ],
     "header_map": {
         "https://hranidengi.com/forums/konfliktnye-situacii/": "Конфликтные ситуации ",
@@ -25,8 +25,8 @@
     "header_container": "div",
     "header_link_field": "href",
     "header_prefix": "https://hranidengi.com",
-    "header_suffix": "",
-    "header_slice": "",
+    "header_suffix": "/page-",
+    "header_slice": "/page",
     "comment_classes": [
         "message-userContent",
         "lbContainer",
