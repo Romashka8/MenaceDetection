@@ -10,14 +10,14 @@
         "https://hranidengi.com/forums/sekrety-i-lajfxaki.34"
     ],
     "header_map": {
-        "https://hranidengi.com/forums/konfliktnye-situacii/": "Конфликтные ситуации ",
-        "https://hranidengi.com/forums/kreditnye-karty/": "Кредитные карты ",
-        "https://hranidengi.com/forums/debetovye-karty/": "Дебетовые карты",
-        "https://hranidengi.com/forums/kredity/": "Кредиты",
-        "https://hranidengi.com/forums/kreditnaja-istorija/": "Кредитная история",
-        "https://hranidengi.com/forums/juridicheskaja-konsultacija/": "Юридическая консультация",
-        "https://hranidengi.com/forums/moshennicheskie-tranzakcii/": "Мошеннические транзакции",
-        "https://hranidengi.com/forums/sekrety-i-lajfxaki.34/": "Секреты и лайфхаки"
+        "https://hranidengi.com/forums/konfliktnye-situacii": "Конфликтные ситуации ",
+        "https://hranidengi.com/forums/kreditnye-karty": "Кредитные карты ",
+        "https://hranidengi.com/forums/debetovye-karty": "Дебетовые карты",
+        "https://hranidengi.com/forums/kredity": "Кредиты",
+        "https://hranidengi.com/forums/kreditnaja-istorija": "Кредитная история",
+        "https://hranidengi.com/forums/juridicheskaja-konsultacija": "Юридическая консультация",
+        "https://hranidengi.com/forums/moshennicheskie-tranzakcii": "Мошеннические транзакции",
+        "https://hranidengi.com/forums/sekrety-i-lajfxaki.34": "Секреты и лайфхаки"
     },
     "header_classes": [
         "structItem-title"
