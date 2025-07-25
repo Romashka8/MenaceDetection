@@ -59,18 +59,27 @@ class OnlineParser:
 
 		return parsed_headers
 
-	def parse_comments(self, url, deep=1):
+	def parse_comments(self, url, deep=1, verbose=False):
 		
 		parsed_comments = []
+		prev_soup = None
 
 		for d in range(1, deep + 1):
 
 			if self.config["comment_slice"]:
 				url = url[:url.rfind(self.config["comment_slice"])] + self.config["comment_suffix"] + str(d)
 
+			if verbose:
+				self.logger.info(f"Processing url {url}... Current deep: {d}")
+
 			soup = self.parse_html(url)
 			soup.features = "lxml"
 			comments = soup.find_all(self.config["comment_container"], class_=self.config["comment_classes"])
+
+			if soup == prev_soup:
+				continue
+			else:
+				prev_soup = soup
 
 			for com in comments[self.config["skip_first"]:]:
 
