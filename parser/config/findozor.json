@@ -1,0 +1,31 @@
+{
+    "header_links": [
+        "https://findozor.net/forum/forums/credits/",
+        "https://findozor.net/forum/forums/otzivi/"
+    ],
+    "header_map": {
+        "https://findozor.net/forum/forums/credits/": "Кредиты",
+        "https://findozor.net/forum/forums/otzivi/": "Отзывы должников банков"
+    },
+    "header_classes": [
+        "structItem-title"
+    ],
+    "header_container": "div",
+    "header_link_field": "href",
+    "header_prefix": "https://findozor.net",
+    "header_suffix": "page-",
+    "header_slice": "page",
+    "comment_classes": [
+        "message-userContent",
+        "lbContainer",
+        "js-lbContainer" 
+    ],
+    "comment_container": "div",
+    "comment_prefix": "",
+    "comment_suffix": "/page-",
+    "comment_slice": "/page",
+    "comment_text_container": "div",
+    "comment_date_container": "",
+    "comment_date_atr": "data-lb-caption-desc",
+    "skip_first": 1
+}
