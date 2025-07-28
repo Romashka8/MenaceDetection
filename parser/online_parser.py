@@ -59,12 +59,12 @@ class OnlineParser:
 
 		return parsed_headers
 
-	def parse_comments(self, url, deep=1, verbose=False):
+	def parse_comments(self, url, deep_start=1, deep_end=10, verbose=False):
 		
 		parsed_comments = []
 		prev_soup = None
 
-		for d in range(1, deep + 1):
+		for d in range(deep_start, deep_end + 1):
 
 			if self.config["comment_slice"]:
 				url = url[:url.rfind(self.config["comment_slice"])] + self.config["comment_suffix"] + str(d)
