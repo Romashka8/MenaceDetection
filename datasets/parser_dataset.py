@@ -6,6 +6,7 @@ import pathlib
 import json
 
 from datetime import datetime
+import re
 
 import numpy as np
 import pandas as pd
@@ -97,9 +98,11 @@ class ParserDataset:
 					for msg in comment[1]:
 
 						try:
-							date = datetime.strptime(msg[1], "%Y-%m-%dT%H:%M:%SZ")
+							date = datetime.fromisoformat(msg[1])
+							date = date.strptime("%Y-%m-%dT%H:%M:%SZ")
+
 						except ValueError:
-							date = msg[1]
+							date = re.sub(r"[a-zA-Zа-яА-ЯёЁ]", "", msg[1])
 
 						self.comments.append([
 							self.config["header_map"][topic], topic,
