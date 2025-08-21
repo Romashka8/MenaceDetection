@@ -47,7 +47,9 @@ class ParserDataset:
 				data = headers[topic][flud]
 
 				try:
-					date = (datetime.strptime(data[1], "%Y-%m-%dT%H:%M:%SZ"), datetime.strptime(data[2], "%Y-%m-%dT%H:%M:%SZ"))
+					data = (data[0], datetime.fromisoformat(data[1]), datetime.fromisoformat(data[2]))
+					date = (data[1].strptime(data[1], "%Y-%m-%dT%H:%M:%SZ"), data[2].strptime(data[1], "%Y-%m-%dT%H:%M:%SZ"))
+
 				except ValueError:
 					date = (data[1], data[2])
 
